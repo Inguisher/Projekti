@@ -1,0 +1,56 @@
+//Määritetään kaikki digitaalipinnit
+const int C = 6, D = 7, E = 8, F = 9, G = 10, A = 11, H = 12;
+const int Buzzer = 13;
+const int Up = A0, Down = A1;
+const int LED = 5, LED1 = 4, LED2 = 3, LED3 = 2;
+int menu[] = {5,4,3,2};
+const int pinCount = 4;
+
+void setup() 
+{
+  pinMode(C, INPUT);
+  pinMode(D, INPUT);
+  pinMode(E, INPUT);
+  pinMode(F, INPUT);
+  pinMode(G, INPUT);
+  pinMode(A, INPUT);
+  pinMode(H, INPUT);
+  pinMode(Up, INPUT);
+  pinMode(Down, INPUT);
+  pinMode(Buzzer, OUTPUT);
+  for (int LEDS=0; LEDS < pinCount; LEDS++) 
+  {
+    pinMode(menu[LEDS], OUTPUT);
+  }
+}
+
+void loop() 
+{
+  
+  if (digitalRead(D) == HIGH){
+  digitalWrite(LED2,HIGH);
+    tone(Buzzer,154,50);
+  }
+    else {
+  	digitalWrite(LED2,LOW);
+    }
+  
+  if (analogRead(A0) == 1023){
+    digitalWrite(menu[5,4,3,2], HIGH);
+  }
+  
+  delay(20);
+}
+
+/*
+DIGITAALISILLE KYTKIMILLE
+  if (digitalRead(D) == HIGH){
+  digitalWrite(LED,HIGH);
+  }
+  
+ ANALOGISILLE KYTKIMILLE 
+  if (analogRead(A0) == 1023){
+  digitalWrite(LED,HIGH);
+  }
+    
+  */
