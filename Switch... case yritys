@@ -1,0 +1,49 @@
+int i=0;
+ int mem[8];
+  switch (OctScale) {
+    
+  	case 0:
+    for(i = 0; i < 8; i++) {
+      if (mem[i] < 8) {
+      mem[i] = Oct2[i++];
+      }
+     }
+    
+    Oct0[i] == mem[i];
+    break;
+   /* 
+    case 1:
+      Oct0[0,1,2,3,4,5,6,7] = Oct2[0,1,2,3,4,5,6,7];
+      OctScale++;
+      break;
+    
+    case 2:
+      Oct0[0,1,2,3,4,5,6,7] = Oct3[0,1,2,3,4,5,6,7];
+      OctScale++;
+      break;
+    
+    case 3:
+      Oct0[0,1,2,3,4,5,6,7] = Oct4[0,1,2,3,4,5,6,7];
+      OctScale++;
+      break;
+    
+    case 4:
+      Oct0[0,1,2,3,4,5,6,7] = Oct5[0,1,2,3,4,5,6,7];
+      OctScale++;
+      break;
+    
+    case 5:
+      Oct0[0,1,2,3,4,5,6,7] = Oct6[0,1,2,3,4,5,6,7];
+      OctScale++;
+      break;
+    
+    case 6:
+      Oct0[0,1,2,3,4,5,6,7] = Oct7[0,1,2,3,4,5,6,7];
+      OctScale++;
+      break;
+    */
+  }
+OctScale++;
+delay(20);
+return;
+}
