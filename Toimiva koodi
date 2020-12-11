@@ -89,7 +89,7 @@
 #define NOTE_DS8 4978
 
 //Määritetään muuttujat.
-const int C = 6, D = 7, E = 8, F = 9, G = 10, A = 11, H = 12, CC = 13;
+const int C = 13, D = 12, E = 11, F = 10, G = 9, A = 8, H = 7, CC = 6;
 const int Buzzer = A5;
 const int Up = A0, Down = A1;
 int OctScale=3;
@@ -108,7 +108,7 @@ const int Oct7[] = {NOTE_C7, NOTE_D7, NOTE_E7, NOTE_F7, NOTE_G7, NOTE_A7, NOTE_H
 void setup() {
   Serial.begin(9600);
   pinMode(A4, INPUT);
-  pinMode(C, INPUT_PULLUP);		//Käytetään Arduinossa olevia 20kΩ ylösvetovastuksia kytkimien käyttöön.
+  pinMode(C, INPUT);		//Käytetään Arduinossa olevia 20kΩ ylösvetovastuksia kytkimien käyttöön.
   pinMode(D, INPUT_PULLUP);
   pinMode(E, INPUT_PULLUP);
   pinMode(F, INPUT_PULLUP);
@@ -134,7 +134,7 @@ piano();
 void piano() {
   Serial.println(OctScale); 	//Jostain syystä ei toimi ilman tätä? Onkohan vain Tinkercadissä.
  
-  while (digitalRead(C) == LOW){//Näppäimet ovat aktiivisia ja tuottavat äänen, kun ovat alatilassa.
+  while (digitalRead(C) == HIGH){//Näppäimet ovat aktiivisia ja tuottavat äänen, kun ovat alatilassa.
     tone(Buzzer,Oct0[0]);
   }
   
@@ -162,7 +162,7 @@ void piano() {
  	tone(Buzzer,Oct0[6], 50);
   }
   
-  while (digitalRead(CC) >= HIGH){
+  while (digitalRead(CC) == LOW){
  	tone(Buzzer,Oct0[7], 50);
   }
   
@@ -188,65 +188,65 @@ void OctUp (){
     case 0:
       Oct0[0]=Oct1[0], Oct0[1]=Oct1[1], Oct0[2]=Oct1[2], Oct0[3]=Oct1[3],
       Oct0[4]=Oct1[4], Oct0[5]=Oct1[5], Oct0[6]=Oct1[6], Oct0[7]=Oct1[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], LOW);
 	  digitalWrite(menu[2], LOW);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
   	case 1:
       Oct0[0]=Oct2[0], Oct0[1]=Oct2[1], Oct0[2]=Oct2[2], Oct0[3]=Oct2[3],
       Oct0[4]=Oct2[4], Oct0[5]=Oct2[5], Oct0[6]=Oct2[6], Oct0[7]=Oct2[7];
-          digitalWrite(menu[0], LOW);
+      digitalWrite(menu[0], LOW);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], LOW);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 2:
       Oct0[0]=Oct3[0], Oct0[1]=Oct3[1], Oct0[2]=Oct3[2], Oct0[3]=Oct3[3],
       Oct0[4]=Oct3[4], Oct0[5]=Oct3[5], Oct0[6]=Oct3[6], Oct0[7]=Oct3[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], LOW);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 3:
       Oct0[0]=Oct4[0], Oct0[1]=Oct4[1], Oct0[2]=Oct4[2], Oct0[3]=Oct4[3],
       Oct0[4]=Oct4[4], Oct0[5]=Oct4[5], Oct0[6]=Oct4[6], Oct0[7]=Oct4[7];
-          digitalWrite(menu[0], LOW);
+      digitalWrite(menu[0], LOW);
 	  digitalWrite(menu[1], LOW);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 4:
       Oct0[0]=Oct5[0], Oct0[1]=Oct5[1], Oct0[2]=Oct5[2], Oct0[3]=Oct5[3],
       Oct0[4]=Oct5[4], Oct0[5]=Oct5[5], Oct0[6]=Oct5[6], Oct0[7]=Oct5[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], LOW);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 5:
       Oct0[0]=Oct6[0], Oct0[1]=Oct6[1], Oct0[2]=Oct6[2], Oct0[3]=Oct6[3],
       Oct0[4]=Oct6[4], Oct0[5]=Oct6[5], Oct0[6]=Oct6[6], Oct0[7]=Oct6[7];
-          digitalWrite(menu[0], LOW);
+      digitalWrite(menu[0], LOW);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
   
     case 6:
       Oct0[0]=Oct7[0], Oct0[1]=Oct7[1], Oct0[2]=Oct7[2], Oct0[3]=Oct7[3],
       Oct0[4]=Oct7[4], Oct0[5]=Oct7[5], Oct0[6]=Oct7[6], Oct0[7]=Oct7[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
   }
     delay(100);
 	return;
@@ -262,65 +262,65 @@ void OctDown (){
     case 0:
       Oct0[0]=Oct1[0], Oct0[1]=Oct1[1], Oct0[2]=Oct1[2], Oct0[3]=Oct1[3],
       Oct0[4]=Oct1[4], Oct0[5]=Oct1[5], Oct0[6]=Oct1[6], Oct0[7]=Oct1[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], LOW);
 	  digitalWrite(menu[2], LOW);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
   	case 1:
       Oct0[0]=Oct2[0], Oct0[1]=Oct2[1], Oct0[2]=Oct2[2], Oct0[3]=Oct2[3],
       Oct0[4]=Oct2[4], Oct0[5]=Oct2[5], Oct0[6]=Oct2[6], Oct0[7]=Oct2[7];
-          digitalWrite(menu[0], LOW);
+      digitalWrite(menu[0], LOW);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], LOW);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 2:
       Oct0[0]=Oct3[0], Oct0[1]=Oct3[1], Oct0[2]=Oct3[2], Oct0[3]=Oct3[3],
       Oct0[4]=Oct3[4], Oct0[5]=Oct3[5], Oct0[6]=Oct3[6], Oct0[7]=Oct3[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], LOW);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 3:
       Oct0[0]=Oct4[0], Oct0[1]=Oct4[1], Oct0[2]=Oct4[2], Oct0[3]=Oct4[3],
       Oct0[4]=Oct4[4], Oct0[5]=Oct4[5], Oct0[6]=Oct4[6], Oct0[7]=Oct4[7];
-          digitalWrite(menu[0], LOW);
+      digitalWrite(menu[0], LOW);
 	  digitalWrite(menu[1], LOW);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 4:
       Oct0[0]=Oct5[0], Oct0[1]=Oct5[1], Oct0[2]=Oct5[2], Oct0[3]=Oct5[3],
       Oct0[4]=Oct5[4], Oct0[5]=Oct5[5], Oct0[6]=Oct5[6], Oct0[7]=Oct5[7];
-          digitalWrite(menu[0], HIGH);
+      digitalWrite(menu[0], HIGH);
 	  digitalWrite(menu[1], LOW);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
     
     case 5:
       Oct0[0]=Oct6[0], Oct0[1]=Oct6[1], Oct0[2]=Oct6[2], Oct0[3]=Oct6[3],
       Oct0[4]=Oct6[4], Oct0[5]=Oct6[5], Oct0[6]=Oct6[6], Oct0[7]=Oct6[7];
-          digitalWrite(menu[0], LOW);
+      digitalWrite(menu[0], LOW);
 	  digitalWrite(menu[1], HIGH);
 	  digitalWrite(menu[2], HIGH);
 	  digitalWrite(menu[3], LOW);
-          break;
+      break;
   
     case 6:
       Oct0[0]=Oct7[0], Oct0[1]=Oct7[1], Oct0[2]=Oct7[2], Oct0[3]=Oct7[3],
       Oct0[4]=Oct7[4], Oct0[5]=Oct7[5], Oct0[6]=Oct7[6], Oct0[7]=Oct7[7];
-          digitalWrite(menu[0], HIGH);
-          digitalWrite(menu[1], HIGH);
-          digitalWrite(menu[2], HIGH);
-          digitalWrite(menu[3], LOW);
-          break;
+      digitalWrite(menu[0], HIGH);
+	  digitalWrite(menu[1], HIGH);
+	  digitalWrite(menu[2], HIGH);
+	  digitalWrite(menu[3], LOW);
+      break;
   }
     delay(100);
 	return;
