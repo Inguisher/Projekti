@@ -108,14 +108,14 @@ const int Oct7[] = {NOTE_C7, NOTE_D7, NOTE_E7, NOTE_F7, NOTE_G7, NOTE_A7, NOTE_H
 void setup() {
   Serial.begin(9600);
   pinMode(A4, INPUT);
-  pinMode(C, INPUT);		//Käytetään Arduinossa olevia 20kΩ ylösvetovastuksia kytkimien käyttöön.
+  pinMode(C, INPUT);    //Käytetään Arduinossa olevia 20kΩ ylösvetovastuksia kytkimien käyttöön.
   pinMode(D, INPUT_PULLUP);
   pinMode(E, INPUT_PULLUP);
   pinMode(F, INPUT_PULLUP);
   pinMode(G, INPUT_PULLUP);
   pinMode(A, INPUT_PULLUP);
   pinMode(H, INPUT_PULLUP);
-  pinMode(CC, INPUT_PULLUP);	 //ehkä tehä fyysisellä vastuksella, koska arduinon LED
+  pinMode(CC, INPUT_PULLUP);   //ehkä tehä fyysisellä vastuksella, koska arduinon LED
   pinMode(Up, INPUT);
   pinMode(Down, INPUT);
   pinMode(Buzzer, OUTPUT);
@@ -132,55 +132,55 @@ void loop(){
 piano();
 }
 void piano() {
-  Serial.println(OctScale); 	//Jostain syystä ei toimi ilman tätä? Onkohan vain Tinkercadissä.
- 
+  Serial.println(analogRead(A4));   //Jostain syystä ei toimi ilman tätä? Onkohan vain Tinkercadissä.
+  Serial.println(OctScale);
   while (digitalRead(C) == HIGH){//Näppäimet ovat aktiivisia ja tuottavat äänen, kun ovat alatilassa.
     tone(Buzzer,Oct0[0]);
   }
   
   while (digitalRead(D) == LOW){
- 	tone(Buzzer,Oct0[1]);
+  tone(Buzzer,Oct0[1]);
   }
   
   while (digitalRead(E) == LOW){
- 	tone(Buzzer,Oct0[2], 50);
+  tone(Buzzer,Oct0[2]);
   }
   
   while (digitalRead(F) == LOW){
-    tone(Buzzer,Oct0[3], 50);
+    tone(Buzzer,Oct0[3]);
   }
   
   while (digitalRead(G) == LOW){
- 	tone(Buzzer,Oct0[4], 50);
+  tone(Buzzer,Oct0[4]);
   }
   
   while (digitalRead(A) == LOW){
- 	tone(Buzzer,Oct0[5], 50);
+  tone(Buzzer,Oct0[5]);
   }
   
   while (digitalRead(H) == LOW){
- 	tone(Buzzer,Oct0[6], 50);
+  tone(Buzzer,Oct0[6]);
   }
   
   while (digitalRead(CC) == LOW){
- 	tone(Buzzer,Oct0[7], 50);
+  tone(Buzzer,Oct0[7]);
   }
   
-  if (analogRead(Up) == 1023){
+  while (analogRead(Up) >= 1015){
   OctUp();
   }
   
-  if (analogRead(Down) == 1023){
+  while (analogRead(Down) >= 1015){
   OctDown();
   }
   noTone(A5);
-  delay(0);
+
   return;
 }
 
 void OctUp (){
   if(OctScale == 6){
- 	return piano();
+  return piano();
   } 
   OctScale++;
   switch (OctScale) {
@@ -189,72 +189,72 @@ void OctUp (){
       Oct0[0]=Oct1[0], Oct0[1]=Oct1[1], Oct0[2]=Oct1[2], Oct0[3]=Oct1[3],
       Oct0[4]=Oct1[4], Oct0[5]=Oct1[5], Oct0[6]=Oct1[6], Oct0[7]=Oct1[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], LOW);
-	  digitalWrite(menu[2], LOW);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], LOW);
+    digitalWrite(menu[2], LOW);
+    digitalWrite(menu[3], LOW);
       break;
     
-  	case 1:
+    case 1:
       Oct0[0]=Oct2[0], Oct0[1]=Oct2[1], Oct0[2]=Oct2[2], Oct0[3]=Oct2[3],
       Oct0[4]=Oct2[4], Oct0[5]=Oct2[5], Oct0[6]=Oct2[6], Oct0[7]=Oct2[7];
       digitalWrite(menu[0], LOW);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], LOW);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], LOW);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 2:
       Oct0[0]=Oct3[0], Oct0[1]=Oct3[1], Oct0[2]=Oct3[2], Oct0[3]=Oct3[3],
       Oct0[4]=Oct3[4], Oct0[5]=Oct3[5], Oct0[6]=Oct3[6], Oct0[7]=Oct3[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], LOW);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], LOW);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 3:
       Oct0[0]=Oct4[0], Oct0[1]=Oct4[1], Oct0[2]=Oct4[2], Oct0[3]=Oct4[3],
       Oct0[4]=Oct4[4], Oct0[5]=Oct4[5], Oct0[6]=Oct4[6], Oct0[7]=Oct4[7];
       digitalWrite(menu[0], LOW);
-	  digitalWrite(menu[1], LOW);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], LOW);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 4:
       Oct0[0]=Oct5[0], Oct0[1]=Oct5[1], Oct0[2]=Oct5[2], Oct0[3]=Oct5[3],
       Oct0[4]=Oct5[4], Oct0[5]=Oct5[5], Oct0[6]=Oct5[6], Oct0[7]=Oct5[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], LOW);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], LOW);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 5:
       Oct0[0]=Oct6[0], Oct0[1]=Oct6[1], Oct0[2]=Oct6[2], Oct0[3]=Oct6[3],
       Oct0[4]=Oct6[4], Oct0[5]=Oct6[5], Oct0[6]=Oct6[6], Oct0[7]=Oct6[7];
       digitalWrite(menu[0], LOW);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
   
     case 6:
       Oct0[0]=Oct7[0], Oct0[1]=Oct7[1], Oct0[2]=Oct7[2], Oct0[3]=Oct7[3],
       Oct0[4]=Oct7[4], Oct0[5]=Oct7[5], Oct0[6]=Oct7[6], Oct0[7]=Oct7[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
   }
-    delay(100);
-	return;
+  delay(200);
+  return piano();
 }
 
 void OctDown (){
   if(OctScale == 0){
- 	return piano();
+  return piano();
   }
   OctScale--;
   switch (OctScale) {
@@ -263,65 +263,65 @@ void OctDown (){
       Oct0[0]=Oct1[0], Oct0[1]=Oct1[1], Oct0[2]=Oct1[2], Oct0[3]=Oct1[3],
       Oct0[4]=Oct1[4], Oct0[5]=Oct1[5], Oct0[6]=Oct1[6], Oct0[7]=Oct1[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], LOW);
-	  digitalWrite(menu[2], LOW);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], LOW);
+    digitalWrite(menu[2], LOW);
+    digitalWrite(menu[3], LOW);
       break;
     
-  	case 1:
+    case 1:
       Oct0[0]=Oct2[0], Oct0[1]=Oct2[1], Oct0[2]=Oct2[2], Oct0[3]=Oct2[3],
       Oct0[4]=Oct2[4], Oct0[5]=Oct2[5], Oct0[6]=Oct2[6], Oct0[7]=Oct2[7];
       digitalWrite(menu[0], LOW);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], LOW);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], LOW);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 2:
       Oct0[0]=Oct3[0], Oct0[1]=Oct3[1], Oct0[2]=Oct3[2], Oct0[3]=Oct3[3],
       Oct0[4]=Oct3[4], Oct0[5]=Oct3[5], Oct0[6]=Oct3[6], Oct0[7]=Oct3[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], LOW);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], LOW);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 3:
       Oct0[0]=Oct4[0], Oct0[1]=Oct4[1], Oct0[2]=Oct4[2], Oct0[3]=Oct4[3],
       Oct0[4]=Oct4[4], Oct0[5]=Oct4[5], Oct0[6]=Oct4[6], Oct0[7]=Oct4[7];
       digitalWrite(menu[0], LOW);
-	  digitalWrite(menu[1], LOW);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], LOW);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 4:
       Oct0[0]=Oct5[0], Oct0[1]=Oct5[1], Oct0[2]=Oct5[2], Oct0[3]=Oct5[3],
       Oct0[4]=Oct5[4], Oct0[5]=Oct5[5], Oct0[6]=Oct5[6], Oct0[7]=Oct5[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], LOW);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], LOW);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
     
     case 5:
       Oct0[0]=Oct6[0], Oct0[1]=Oct6[1], Oct0[2]=Oct6[2], Oct0[3]=Oct6[3],
       Oct0[4]=Oct6[4], Oct0[5]=Oct6[5], Oct0[6]=Oct6[6], Oct0[7]=Oct6[7];
       digitalWrite(menu[0], LOW);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
   
     case 6:
       Oct0[0]=Oct7[0], Oct0[1]=Oct7[1], Oct0[2]=Oct7[2], Oct0[3]=Oct7[3],
       Oct0[4]=Oct7[4], Oct0[5]=Oct7[5], Oct0[6]=Oct7[6], Oct0[7]=Oct7[7];
       digitalWrite(menu[0], HIGH);
-	  digitalWrite(menu[1], HIGH);
-	  digitalWrite(menu[2], HIGH);
-	  digitalWrite(menu[3], LOW);
+    digitalWrite(menu[1], HIGH);
+    digitalWrite(menu[2], HIGH);
+    digitalWrite(menu[3], LOW);
       break;
   }
-    delay(100);
-	return;
+  delay(200);
+  return piano();
 }
